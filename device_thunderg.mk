@@ -32,9 +32,9 @@ DISABLE_DEXPREOPT := false
 
 # Kernel Related
 PRODUCT_COPY_FILES += \
-    device/lge/thunderg/files/lib/modules/wireless.ko:system/lib/modules/wireless.ko \
-    device/lge/thunderg/files/lib/modules/cifs.ko:system/lib/modules/cifs.ko \
-    device/lge/thunderg/files/lib/modules/tun.ko:system/lib/modules/tun.ko \
+    device/lge/thunderg/modules/wireless.ko:system/lib/modules/wireless.ko \
+    device/lge/thunderg/modules/cifs.ko:system/lib/modules/cifs.ko \
+    device/lge/thunderg/modules/tun.ko:system/lib/modules/tun.ko \
 
 # Publish that we support the live wallpaper feature.
 PRODUCT_COPY_FILES += \
