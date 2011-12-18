@@ -54,7 +54,7 @@ PRODUCT_COPY_FILES += \
 # Board-specific init (does not support charging in "power off" state yet)
 PRODUCT_COPY_FILES += \
     vendor/lge/thunderg/proprietary/init.thunderg.rc:root/init.thunderg.rc \
-    vendor/lge/thunderg/proprietary/initlogo.rle:root/initlogo.rle \
+    device/lge/thunderg/initlogo.rle:root/initlogo.rle \
     vendor/lge/thunderg/proprietary/ueventd.thunderg.rc:root/ueventd.thunderg.rc \
 
 # Camera

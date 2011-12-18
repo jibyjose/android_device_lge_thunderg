@@ -9,7 +9,6 @@ system/bin/BCM4325D1_004.002.004.0218.0248.hcd
 
 # Board-specific init
 init.thunderg.rc
-initlogo.rle
 ueventd.thunderg.rc
 
 # Camera
