@@ -21,6 +21,7 @@ system/lib/hw/gralloc.default.so
 system/lib/hw/gralloc.thunderg.so
 
 # Graphics-3D
+system/lib/egl/egl.cfg
 system/lib/egl/libEGL_adreno200.so
 system/lib/egl/libGLESv1_CM_adreno200.so
 system/lib/egl/libGLESv2_adreno200.so
