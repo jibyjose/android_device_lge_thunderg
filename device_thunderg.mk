@@ -56,7 +56,6 @@ PRODUCT_COPY_FILES += \
     vendor/lge/thunderg/proprietary/init.thunderg.rc:root/init.thunderg.rc \
     vendor/lge/thunderg/proprietary/initlogo.rle:root/initlogo.rle \
     vendor/lge/thunderg/proprietary/ueventd.thunderg.rc:root/ueventd.thunderg.rc \
-    vendor/lge/thunderg/proprietary/etc/init.local.rc:/system/etc/init.local.rc
 
 # Camera
 PRODUCT_COPY_FILES += \
@@ -81,9 +80,9 @@ PRODUCT_COPY_FILES += \
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
-    vendor/lge/thunderg/proprietary/thunder_keypad.kl:system/usr/keylayout/thunder_keypad.kl \
-    vendor/lge/thunderg/proprietary/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
-    vendor/lge/thunderg/proprietary/thunder_keypad.kcm.bin:system/usr/keychars/thunder_keypad.kcm.bin \
+    vendor/lge/thunderg/proprietary/usr/keylayout/thunder_keypad.kl:system/usr/keylayout/thunder_keypad.kl \
+    vendor/lge/thunderg/proprietary/usr/keylayout/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
+    vendor/lge/thunderg/proprietary/usr/keychars/thunder_keypad.kcm.bin:system/usr/keychars/thunder_keypad.kcm.bin \
 
 # LGE services
 PRODUCT_COPY_FILES += \
