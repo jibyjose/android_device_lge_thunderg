@@ -1,7 +1,7 @@
 DEVICE_PACKAGE_OVERLAYS += device/lge/thunderg/overlay
 
 PRODUCT_COPY_FILES += \
-    device/lge/thunderg/kernel:kernel
+    device/lge/thunderg/prebuilt/kernel:kernel
 
 PRODUCT_PACKAGES += \
     librs_jni \
@@ -32,9 +32,9 @@ DISABLE_DEXPREOPT := false
 
 # Kernel Related
 PRODUCT_COPY_FILES += \
-    device/lge/thunderg/modules/wireless.ko:system/lib/modules/wireless.ko \
-    device/lge/thunderg/modules/cifs.ko:system/lib/modules/cifs.ko \
-    device/lge/thunderg/modules/tun.ko:system/lib/modules/tun.ko \
+    device/lge/thunderg/prebuilt/modules/wireless.ko:system/lib/modules/wireless.ko \
+    device/lge/thunderg/prebuilt/modules/cifs.ko:system/lib/modules/cifs.ko \
+    device/lge/thunderg/prebuilt/modules/tun.ko:system/lib/modules/tun.ko \
 
 # Publish that we support the live wallpaper feature.
 PRODUCT_COPY_FILES += \
@@ -42,10 +42,10 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    vendor/lge/thunderg/proprietary/etc/AudioFilter.csv:system/etc/AudioFilter.csv \
+    device/lge/thunderg/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv \
     vendor/lge/thunderg/proprietary/lib/liba2dp.so:system/lib/liba2dp.so \
     vendor/lge/thunderg/proprietary/lib/libaudioeq.so:system/lib/libaudioeq.so \
-    vendor/lge/thunderg/proprietary/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
+    device/lge/thunderg/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
@@ -53,9 +53,9 @@ PRODUCT_COPY_FILES += \
 
 # Board-specific init (does not support charging in "power off" state yet)
 PRODUCT_COPY_FILES += \
-    vendor/lge/thunderg/proprietary/init.thunderg.rc:root/init.thunderg.rc \
-    device/lge/thunderg/initlogo.rle:root/initlogo.rle \
-    vendor/lge/thunderg/proprietary/ueventd.thunderg.rc:root/ueventd.thunderg.rc \
+    device/lge/thunderg/prebuilt/init.thunderg.rc:root/init.thunderg.rc \
+    device/lge/thunderg/prebuilt/initlogo.rle:root/initlogo.rle \
+    device/lge/thunderg/prebuilt/ueventd.thunderg.rc:root/ueventd.thunderg.rc \
 
 # Camera
 PRODUCT_COPY_FILES += \
@@ -80,8 +80,8 @@ PRODUCT_COPY_FILES += \
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
-    vendor/lge/thunderg/proprietary/usr/keylayout/thunder_keypad.kl:system/usr/keylayout/thunder_keypad.kl \
-    vendor/lge/thunderg/proprietary/usr/keylayout/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
+    device/lge/thunderg/prebuilt/thunder_keypad.kl:system/usr/keylayout/thunder_keypad.kl \
+    device/lge/thunderg/prebuilt/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
     vendor/lge/thunderg/proprietary/usr/keychars/thunder_keypad.kcm.bin:system/usr/keychars/thunder_keypad.kcm.bin \
 
 # LGE services
@@ -96,7 +96,7 @@ PRODUCT_COPY_FILES += \
 
 # Media Profiles
 PRODUCT_COPY_FILES += \
-    vendor/lge/thunderg/proprietary/etc/media_profiles.xml:system/etc/media_profiles.xml
+    device/lge/thunderg/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -145,7 +145,7 @@ PRODUCT_COPY_FILES += \
 
 # SD Card
 PRODUCT_COPY_FILES += \
-    vendor/lge/thunderg/proprietary/etc/vold.fstab:system/etc/vold.fstab \
+    device/lge/thunderg/prebuilt/etc/vold.fstab:system/etc/vold.fstab \
 
 # Sensors
 PRODUCT_COPY_FILES += \
@@ -159,9 +159,9 @@ PRODUCT_COPY_FILES += \
 
 # Wifi
 PRODUCT_COPY_FILES += \
-    vendor/lge/thunderg/proprietary/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    vendor/lge/thunderg/proprietary/etc/wl/nvram.txt:system/etc/wl/nvram.txt \
-    vendor/lge/thunderg/proprietary/etc/dhcpd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
+    device/lge/thunderg/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    device/lge/thunderg/prebuilt/etc/wl/nvram.txt:system/etc/wl/nvram.txt \
+    device/lge/thunderg/prebuilt/etc/dhcpd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
     vendor/lge/thunderg/proprietary/etc/wl/rtecdc.bin:system/etc/wl/rtecdc.bin \
     vendor/lge/thunderg/proprietary/etc/wl/rtecdc-apsta.bin:system/etc/wl/rtecdc-apsta.bin \
     vendor/lge/thunderg/proprietary/etc/wl/rtecdc-mfgtest.bin:system/etc/wl/rtecdc-mfgtest.bin

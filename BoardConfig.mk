@@ -21,7 +21,7 @@ TARGET_PROVIDES_LIBAUDIO := true
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_CUSTOM_BRCM_PATCHRAM_PLUS := ../../../device/lge/thunderg/brcm_patchram_plus/brcm_patchram_plus.c
+BOARD_CUSTOM_BRCM_PATCHRAM_PLUS := ../../../device/lge/thunderg/prebuilt/brcm_patchram_plus.c
 
 # Browser
 JS_ENGINE := v8
@@ -63,7 +63,7 @@ BOARD_PAGE_SIZE := 0x00000800
 
 # Mass Storage
 BOARD_USE_USB_MASS_STORAGE_SWITCH := true
-BOARD_CUSTOM_USB_CONTROLLER := ../../device/lge/thunderg/UsbController.cpp
+BOARD_CUSTOM_USB_CONTROLLER := ../../device/lge/thunderg/prebuilt/UsbController.cpp
 BOARD_UMS_LUNFILE := /sys/devices/platform/msm_hsusb/gadget/lun0/file
 
 # Qualcomm

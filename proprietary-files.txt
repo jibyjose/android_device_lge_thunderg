@@ -1,15 +1,9 @@
 # Audio
-system/etc/AudioFilter.csv
 system/lib/liba2dp.so
 system/lib/libaudioeq.so
-system/etc/AutoVolumeControl.txt
 
 # Bluetooth
 system/bin/BCM4325D1_004.002.004.0218.0248.hcd
-
-# Board-specific init
-init.thunderg.rc
-ueventd.thunderg.rc
 
 # Camera
 system/lib/liboemcamera.so
@@ -31,8 +25,6 @@ system/etc/firmware/yamato_pfp.fw
 system/etc/firmware/yamato_pm4.fw
 
 # Keylayouts
-system/usr/keylayout/thunder_keypad.kl
-system/usr/keylayout/7k_handset.kl
 system/usr/keychars/thunder_keypad.kcm.bin
 
 # LGE services
@@ -43,9 +35,6 @@ system/bin/wiperiface
 system/bin/netmgrd
 system/lib/libdsutils.so
 system/lib/libnetmgr.so
-
-# Media Profiles
-system/etc/media_profiles.xml
 
 # RIL
 system/lib/libril-qc-1.so
@@ -78,21 +67,15 @@ system/bin/rild
 # propietary libril
 system/lib/libril.so
 
-# SD Card
-system/etc/vold.fstab
-
 # Sensors
 system/lib/hw/sensors.thunderg.so
 system/bin/ami304d
 
-# Touchscreen firmware updater
+# Touchscreen
 system/bin/tsdown
 system/etc/MELFAS_FIRM.bin
 
 # Wifi
-system/etc/wifi/wpa_supplicant.conf
-system/etc/wl/nvram.txt
-system/etc/dhcpcd/dhcpcd.conf
 system/etc/wl/rtecdc.bin
 system/etc/wl/rtecdc-apsta.bin
 system/etc/wl/rtecdc-mfgtest.bin
