@@ -21,8 +21,6 @@
 ** are intended for use with CyanogenMod. This includes all the support
 ** for ov5642, and the reverse engineered bits like ioctls and EXIF.
 ** Please do not change the EXIF header without asking me first.
-**
-** Spent enough time debugging it, I felt inclined to add my name here - IHO
 */
 
 //#define LOG_NDEBUG 0
@@ -78,7 +76,6 @@ extern "C" {
 #define DEFAULT_PICTURE_HEIGHT 768
 #define THUMBNAIL_BUFFER_SIZE (THUMBNAIL_WIDTH * THUMBNAIL_HEIGHT * 1.5)
 #define MAX_ZOOM_LEVEL 6
-#define ZOOM_STEP 10
 #define NOT_FOUND -1
 // Number of video buffers held by kernel (initially 1, 2, and 3)
 #define ACTIVE_VIDEO_BUFFERS 3
@@ -862,8 +859,8 @@ QualcommCameraHardware::QualcommCameraHardware()
       mFrameThreadRunning(false),
       mVideoThreadRunning(false),
       mSnapshotThreadRunning(false),
-      mJpegThreadRunning(false),
       mInSnapshotMode(false),
+      mJpegThreadRunning(false),
       mSnapshotFormat(0),
       mReleasedRecordingFrame(false),
       mPreviewFrameSize(0),
@@ -871,7 +868,6 @@ QualcommCameraHardware::QualcommCameraHardware()
       mCameraControlFd(-1),
       mAutoFocusThreadRunning(false),
       mAutoFocusFd(-1),
-      mInitialized(false),
       mBrightness(0),
       mHJR(0),
       mInPreviewCallback(false),
@@ -882,6 +878,7 @@ QualcommCameraHardware::QualcommCameraHardware()
       mDataCallback(0),
       mDataCallbackTimestamp(0),
       mCallbackCookie(0),
+      mInitialized(false),
       mDebugFps(0)
 {
 
@@ -1079,15 +1076,15 @@ void QualcommCameraHardware::initDefaultParameters()
     mParameters.set(CameraParameters::KEY_MAX_SATURATION,
             CAMERA_MAX_SATURATION);
 
-    mParameters.set("sharpness-max",
+    mParameters.set(CameraParameters::KEY_MAX_SHARPNESS,
             CAMERA_MAX_SHARPNESS);
     mParameters.set("sharpness-def",
             CAMERA_DEF_SHARPNESS);
-    mParameters.set("contrast-max",
+    mParameters.set(CameraParameters::KEY_MAX_CONTRAST,
             CAMERA_MAX_CONTRAST);
     mParameters.set("contrast-def",
             CAMERA_DEF_CONTRAST);
-    mParameters.set("saturation-max",
+    mParameters.set(CameraParameters::KEY_MAX_SATURATION,
             CAMERA_MAX_SATURATION);
     mParameters.set("saturation-def",
             CAMERA_DEF_SATURATION);
@@ -1100,10 +1097,10 @@ void QualcommCameraHardware::initDefaultParameters()
             CAMERA_EXPOSURE_COMPENSATION_STEP);
 
     mParameters.set("luma-adaptation", "3");
-	mParameters.set("zoom-supported", "true");
-	mParameters.set("zoom-ratios", "100,150,200,250,300,350,400");
-    mParameters.set("max-zoom", MAX_ZOOM_LEVEL);
-    mParameters.set("zoom", 0);
+    mParameters.set(CameraParameters::KEY_ZOOM_SUPPORTED, "true");
+    mParameters.set(CameraParameters::KEY_ZOOM_RATIOS, "100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500");
+    mParameters.set(CameraParameters::KEY_MAX_ZOOM, MAX_ZOOM_LEVEL);
+    mParameters.set("zoom", 100);
     mParameters.set(CameraParameters::KEY_PICTURE_FORMAT,
                     CameraParameters::PIXEL_FORMAT_JPEG);
 
@@ -1383,7 +1380,7 @@ static bool native_get_maxzoom(int camfd, void *pZm)
              strerror(errno));
         return false;
     }
-    LOGD("ctrlCmd.value = %d", *(int32_t *)ctrlCmd.value);
+    LOGE("native_get_maxzoom: ctrlCmd.value = %d", *(int32_t *)ctrlCmd.value);
     memcpy(pZoom, (int32_t *)ctrlCmd.value, sizeof(int32_t));
 
     LOGV("native_get_maxzoom X");
@@ -1860,15 +1857,17 @@ bool QualcommCameraHardware::native_jpeg_encode(void)
 
    /* Set maker and model. Read the NOTICE before changing this */
    char model[PROP_VALUE_MAX];
-   const char *maker = "InferiorHumanOrgans";
+   char maker[12];
    int modelLen = 0;
 
+   strncpy(maker,"CyanogenMod",11);
+   maker[11] = '\0';
    __system_property_get("ro.product.device", model);
    modelLen=strlen(model);
    model[modelLen] = '\0';
 
     addExifTag(EXIFTAGID_EXIF_CAMERA_MAKER, EXIF_ASCII,
-                  strlen(maker), 1, (void *)maker);
+                  12, 1, (void *)maker);
     addExifTag(EXIFTAGID_EXIF_CAMERA_MODEL, EXIF_ASCII,
                   modelLen, 1, (void *)model);
 
@@ -2612,7 +2611,7 @@ status_t QualcommCameraHardware::startPreviewInternal()
         mParameters.set("zoom-supported", "false");
         mMaxZoom = 0;
     }
-    mParameters.set("max-zoom", mMaxZoom / ZOOM_STEP);
+    mParameters.set("max-zoom",mMaxZoom);
 
     LOGV("startPreviewInternal X");
     return NO_ERROR;
@@ -4131,8 +4130,8 @@ status_t QualcommCameraHardware::setLensshadeValue(const CameraParameters& param
 {
     if ((!strcmp(sensorType->name, "2mp")) ||
         (!strcmp(mSensorInfo.name, "vx6953")) ||
-		(!strcmp(mSensorInfo.name, "ov5642")) || /* http://www.ovt.com/products/sensor.php?id=65 */
-		(!strcmp(mSensorInfo.name, "isx005")) || /* Optimus V -- Sony 3MP sensor -- http://www.sony.net/Products/SC-HP/cx_news/vol59/pdf/isx005_006.pdf */
+		(!strcmp(mSensorInfo.name, "ov5642")) ||
+		(!strcmp(mSensorInfo.name, "isx005")) ||
 	    (!strcmp(mSensorInfo.name, "VX6953")) ) {
         LOGI("Parameter Rolloff is not supported for this sensor");
         return NO_ERROR;
@@ -4261,6 +4260,7 @@ status_t QualcommCameraHardware::setZoom(const CameraParameters& params)
     // size is. Ex: zoom level 1 is always 1.2x, zoom level 2 is 1.44x, etc. So,
     // we need to have a fixed maximum zoom value and do read it from the
     // driver.
+    static const int ZOOM_STEP = 4;
     int32_t zoom_level = params.getInt("zoom");
 
     LOGV("Set zoom=%d", zoom_level);
@@ -4452,7 +4452,7 @@ QualcommCameraHardware::PmemPool::PmemPool(const char *pmem_pool,
         // Unregister preview buffers with the camera drivers.  Allow the VFE to write
         // to all preview buffers except for the last one.
         // Only Register the preview, snapshot and thumbnail buffers with the kernel.
-        if (strcmp("postview", mName)) {
+        if (strcmp("postview", mName) !=0) {
             int num_buf = num_buffers;
             if (!strcmp("preview", mName))
                 num_buf = kPreviewBufferCount;

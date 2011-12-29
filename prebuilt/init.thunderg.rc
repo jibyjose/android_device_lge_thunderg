@@ -1,3 +1,12 @@
+## hopemini@lge.com, 20100416
+
+on boot-ftm-power
+    exec sbin/ftm_power
+
+on boot-pause
+#    exec system/bin/battery_charging
+    exec sbin/chargerlogo
+
 on boot
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
@@ -183,3 +192,19 @@ on property:net.usb_tethering=1
 
 on property:net.usb_tethering=0
     start gadget_id
+
+# LGE_MERGE_S
+# 20100708 hyeongwoo.seo@lge.com MS690: Change.. media -> root
+#service bootsound /system/bin/playmp3
+#    user root
+#    group root
+#    oneshot
+# LGE_MERGE_E
+
+# LGE_MERGE_S
+# Boot logo in init script, munyoung.hwang@lge.com
+service bootlogo sbin/bootlogo
+	user root
+	group root
+	oneshot
+# LGE_MERGE_E

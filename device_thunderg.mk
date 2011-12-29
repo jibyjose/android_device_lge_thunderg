@@ -36,6 +36,36 @@ PRODUCT_COPY_FILES += \
     device/lge/thunderg/prebuilt/modules/cifs.ko:system/lib/modules/cifs.ko \
     device/lge/thunderg/prebuilt/modules/tun.ko:system/lib/modules/tun.ko \
 
+# Offline Charging
+PRODUCT_COPY_FILES += \
+    vendor/lge/thunderg/proprietary/init:root/init \
+    vendor/lge/thunderg/proprietary/sbin/bootlogo:root/sbin/bootlogo \
+    vendor/lge/thunderg/proprietary/sbin/chargerlogo:root/sbin/chargerlogo \
+    vendor/lge/thunderg/proprietary/sbin/ftm_power:root/sbin/ftm_power \
+    vendor/lge/thunderg/proprietary/bootimages/opening_01.rle:root/bootimages/opening_01.rle \
+    vendor/lge/thunderg/proprietary/bootimages/opening_02.rle:root/bootimages/opening_02.rle \
+    vendor/lge/thunderg/proprietary/bootimages/opening_03.rle:root/bootimages/opening_03.rle \
+    vendor/lge/thunderg/proprietary/bootimages/opening_04.rle:root/bootimages/opening_04.rle \
+    vendor/lge/thunderg/proprietary/bootimages/opening_05.rle:root/bootimages/opening_05.rle \
+    vendor/lge/thunderg/proprietary/bootimages/opening_06.rle:root/bootimages/opening_06.rle \
+    vendor/lge/thunderg/proprietary/bootimages/opening_07.rle:root/bootimages/opening_07.rle \
+    vendor/lge/thunderg/proprietary/bootimages/opening_08.rle:root/bootimages/opening_08.rle \
+    vendor/lge/thunderg/proprietary/chargerimages/battery_ani_01.rle:root/chargerimages/battery_ani_01.rle \
+    vendor/lge/thunderg/proprietary/chargerimages/battery_ani_02.rle:root/chargerimages/battery_ani_02.rle \
+    vendor/lge/thunderg/proprietary/chargerimages/battery_ani_03.rle:root/chargerimages/battery_ani_03.rle \
+    vendor/lge/thunderg/proprietary/chargerimages/battery_ani_04.rle:root/chargerimages/battery_ani_04.rle \
+    vendor/lge/thunderg/proprietary/chargerimages/battery_ani_05.rle:root/chargerimages/battery_ani_05.rle \
+    vendor/lge/thunderg/proprietary/chargerimages/battery_bg.rle:root/chargerimages/battery_bg.rle \
+    vendor/lge/thunderg/proprietary/chargerimages/battery_charging_01.rle:root/chargerimages/battery_charging_01.rle \
+    vendor/lge/thunderg/proprietary/chargerimages/battery_charging_02.rle:root/chargerimages/battery_charging_02.rle \
+    vendor/lge/thunderg/proprietary/chargerimages/battery_charging_03.rle:root/chargerimages/battery_charging_03.rle \
+    vendor/lge/thunderg/proprietary/chargerimages/battery_charging_04.rle:root/chargerimages/battery_charging_04.rle \
+    vendor/lge/thunderg/proprietary/chargerimages/battery_charging_05.rle:root/chargerimages/battery_charging_05.rle \
+    vendor/lge/thunderg/proprietary/chargerimages/battery_charging_06.rle:root/chargerimages/battery_charging_06.rle \
+    vendor/lge/thunderg/proprietary/chargerimages/battery_wait_ani_01.rle:root/chargerimages/battery_wait_ani_01.rle \
+    vendor/lge/thunderg/proprietary/chargerimages/battery_wait_ani_02.rle:root/chargerimages/battery_wait_ani_02.rle \
+    vendor/lge/thunderg/proprietary/chargerimages/black_bg.rle:root/chargerimages/black_bg.rle \
+    
 # Publish that we support the live wallpaper feature.
 PRODUCT_COPY_FILES += \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml
@@ -50,6 +80,7 @@ PRODUCT_COPY_FILES += \
 # Bluetooth
 PRODUCT_COPY_FILES += \
     vendor/lge/thunderg/proprietary/bin/BCM4325D1_004.002.004.0218.0248.hcd:system/bin/BCM4325D1_004.002.004.0218.0248.hcd \
+#    vendor/lge/thunderg/proprietary/bin/btld:system/bin/btld \
 
 # Board-specific init (does not support charging in "power off" state yet)
 PRODUCT_COPY_FILES += \
@@ -86,11 +117,12 @@ PRODUCT_COPY_FILES += \
 
 # LGE services
 PRODUCT_COPY_FILES += \
+    vendor/lge/thunderg/proprietary/bin/battery_charging:system/bin/battery_charging \
+    vendor/lge/thunderg/proprietary/bin/netmgrd:system/bin/netmgrd \
+    vendor/lge/thunderg/proprietary/bin/port-bridge:system/bin/port-bridge \
     vendor/lge/thunderg/proprietary/bin/qmuxd:system/bin/qmuxd \
     vendor/lge/thunderg/proprietary/bin/rmt_storage:system/bin/rmt_storage \
-    vendor/lge/thunderg/proprietary/bin/port-bridge:system/bin/port-bridge \
     vendor/lge/thunderg/proprietary/bin/wiperiface:system/bin/wiperiface \
-    vendor/lge/thunderg/proprietary/bin/netmgrd:system/bin/netmgrd \
     vendor/lge/thunderg/proprietary/lib/libdsutils.so:system/lib/libdsutils.so \
     vendor/lge/thunderg/proprietary/lib/libnetmgr.so:system/lib/libnetmgr.so
 
