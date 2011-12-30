@@ -33,8 +33,8 @@ DISABLE_DEXPREOPT := false
 # Kernel Related
 PRODUCT_COPY_FILES += \
     device/lge/thunderg/prebuilt/modules/wireless.ko:system/lib/modules/wireless.ko \
-    device/lge/thunderg/prebuilt/modules/cifs.ko:system/lib/modules/cifs.ko \
     device/lge/thunderg/prebuilt/modules/tun.ko:system/lib/modules/tun.ko \
+    device/lge/thunderg/prebuilt/modules/cifs.ko:system/lib/modules/cifs.ko \
 
 # Publish that we support the live wallpaper feature.
 PRODUCT_COPY_FILES += \
@@ -124,7 +124,6 @@ PRODUCT_COPY_FILES += \
     vendor/lge/thunderg/proprietary/bin/wiperiface:system/bin/wiperiface \
     vendor/lge/thunderg/proprietary/lib/libdsutils.so:system/lib/libdsutils.so \
     vendor/lge/thunderg/proprietary/lib/libnetmgr.so:system/lib/libnetmgr.so \
-#    vendor/lge/thunderg/proprietary/bin/battery_charging:system/bin/battery_charging \
 
 # Media Profiles
 PRODUCT_COPY_FILES += \
@@ -182,6 +181,7 @@ PRODUCT_COPY_FILES += \
 # Sensors
 PRODUCT_COPY_FILES += \
     vendor/lge/thunderg/proprietary/lib/hw/sensors.thunderg.so:system/lib/hw/sensors.thunderg.so \
+    vendor/lge/thunderg/proprietary/lib/libsensorservice.so:system/lib/libsensorservice.so \
     vendor/lge/thunderg/proprietary/bin/ami304d:system/bin/ami304d \
 
 # Touchscreen firmware updater
