@@ -1,5 +1,3 @@
-## hopemini@lge.com, 20100416
-
 on boot-ftm-power
     exec sbin/ftm_power
 
